@@ -1,0 +1,18 @@
+alvin@AlvinUbuntu:~/6.828/lab/shell$ gcc sh.c
+alvin@AlvinUbuntu:~/6.828/lab/shell$ ./a.out < t.sh
+redir not implemented
+exec not implemented
+pipe not implemented
+exec not implemented
+exec not implemented
+pipe not implemented
+exec not implemented
+alvin@AlvinUbuntu:~/6.828/lab/shell$ 
+
+
+alvin@AlvinUbuntu:~$ cd 6.828/lab/shell/
+alvin@AlvinUbuntu:~/6.828/lab/shell$ ./a.out 
+6.828$ a.out < t.sh
+      7       7      47
+      7       7      47
+
