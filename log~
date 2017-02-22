@@ -1,52 +1,28 @@
-The target architecture is assumed to be i8086
-[f000:fff0]    0xffff0:	ljmp   $0xf000,$0xe05b
-0x0000fff0 in ?? ()
-+ symbol-file obj/kern/kernel
-(gdb) b * 0x7d65
-Breakpoint 1 at 0x7d65
-(gdb) c
-Continuing.
 The target architecture is assumed to be i386
-=> 0x7d65:	call   *0x10018
+=> 0xf0100040 <test_backtrace>:	push   %ebp
 
-Breakpoint 1, 0x00007d65 in ?? ()
-(gdb) si
-=> 0x10000c:	movw   $0x1234,0x472
-
-
-
-=> 0x100015:	mov    $0x110000,%eax
-0x00100015 in ?? ()
+Breakpoint 1, test_backtrace (x=5) at kern/init.c:13
+13	{
+(gdb) info reg
+eax            0x0	0
+ecx            0x3d4	980
+edx            0x3d5	981
+ebx            0x10094	65684
+esp            0xf010ffdc	0xf010ffdc                   <=====
+ebp            0xf010fff8	0xf010fff8                   <=====
+esi            0x10094	65684
+edi            0x0	0
+eip            0xf0100040	0xf0100040 <test_backtrace>
+eflags         0x82	[ SF ]
+cs             0x8	8
+ss             0x10	16
+ds             0x10	16
+es             0x10	16
+fs             0x10	16
+gs             0x10	16
 (gdb) 
-=> 0x10001a:	mov    %eax,%cr3
-0x0010001a in ?? ()
-(gdb) 
-=> 0x10001d:	mov    %cr0,%eax
-0x0010001d in ?? ()
-(gdb) 
-=> 0x100020:	or     $0x80010001,%eax
-0x00100020 in ?? ()
-(gdb) 
-=> 0x100025:	mov    %eax,%cr0
 
 
 
-=> 0x100028:	mov    $0xf010002f,%eax
-0x00100028 in ?? ()
-(gdb) 
-=> 0x10002d:	jmp    *%eax
-0x0010002d in ?? ()
-
-
-=> 0xf010002f <relocated>:	mov    $0x0,%ebp
-relocated () at kern/entry.S:74
-74		movl	$0x0,%ebp			# nuke frame pointer
-(gdb) 
-=> 0xf0100034 <relocated+5>:	mov    $0xf0110000,%esp
-relocated () at kern/entry.S:77
-77		movl	$(bootstacktop),%esp
-(gdb) 
-=> 0xf0100039 <relocated+10>:	call   0xf010009d <i386_init>
-80		call	i386_init
 
 
